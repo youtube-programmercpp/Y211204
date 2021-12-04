@@ -29,6 +29,9 @@ struct NumBtn {
         : hButton(GetDlgItem(hDlg, nID))
         , wndproc(reinterpret_cast<WNDPROC>(GetWindowLongPtr(hButton, GWLP_WNDPROC)))
     {
+    }
+    void Install()
+    {
         SetWindowLongPtr(hButton, GWLP_WNDPROC, LONG_PTR(WindowProc));
         SetWindowLongPtr(hButton, GWLP_USERDATA, LONG_PTR(this));
     }
@@ -48,15 +51,15 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg) {
     case WM_INITDIALOG:
-        btn1 = {hDlg, IDC_BUTTON1};
-        btn2 = {hDlg, IDC_BUTTON2};
-        btn3 = {hDlg, IDC_BUTTON3};
-        btn4 = {hDlg, IDC_BUTTON4};
-        btn5 = {hDlg, IDC_BUTTON5};
-        btn6 = {hDlg, IDC_BUTTON6};
-        btn7 = {hDlg, IDC_BUTTON7};
-        btn8 = {hDlg, IDC_BUTTON8};
-        btn9 = {hDlg, IDC_BUTTON9};
+        (btn1 = {hDlg, IDC_BUTTON1}).Install();
+        (btn2 = {hDlg, IDC_BUTTON2}).Install();
+        (btn3 = {hDlg, IDC_BUTTON3}).Install();
+        (btn4 = {hDlg, IDC_BUTTON4}).Install();
+        (btn5 = {hDlg, IDC_BUTTON5}).Install();
+        (btn6 = {hDlg, IDC_BUTTON6}).Install();
+        (btn7 = {hDlg, IDC_BUTTON7}).Install();
+        (btn8 = {hDlg, IDC_BUTTON8}).Install();
+        (btn9 = {hDlg, IDC_BUTTON9}).Install();
         return true;
     case WM_COMMAND:
         switch (LOWORD(wParam)) {
